@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  padding: 5px;
+  background-color: darken(#f4f5f7, 4);
+}
+
+.pencil {
+  pointer-events: none;
+  color: #dbc394;
+}
+
+.iconContainer {
+  margin-left: auto;
+}
+
+.trash {
+  $trash-color: #c2474b;
+
+  margin-left: 8px;
+  color: $trash-color;
+  cursor: pointer;
+
+  &:hover {
+    color: darken($trash-color, 20);
+  }
+}
+
+.info {
+  font-size: 0.7rem;
+  font-style: italic;
+  color: #71cbd0;
+}

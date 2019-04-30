@@ -1,0 +1,20 @@
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.note {
+  margin-bottom: 30px;
+}
+
+.addButton {
+  cursor: pointer;
+  color: #71cbd0;
+
+  font-size: 1.5rem;
+
+  &:hover {
+    color: darken(#71cbd0, 20);
+  }
+}
