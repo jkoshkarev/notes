@@ -6,14 +6,12 @@ import NoteContent from '../NoteContent';
 import { noop } from '../utils';
 
 describe('Note', () => {
-  const noteId = 'note';
-
   it('should render Header with given props', () => {
     const date = new Date();
     const expectedInfo = date.toLocaleString();
 
     const wrapper = shallow(
-      <Note id={noteId} created={date} onDelete={noop} />,
+      <Note created={date} onDelete={noop} />,
     );
     const header = wrapper.find(Header);
     expect(header).toExist();
@@ -21,12 +19,12 @@ describe('Note', () => {
   });
 
   it('should not fail rendering when created is undefined', () => {
-    shallow(<Note id={noteId} onDelete={noop} />);
+    shallow(<Note onDelete={noop} />);
   });
 
   it('should render note with given text', () => {
     const note = 'Some note';
-    const wrapper = shallow(<Note id={noteId} onDelete={noop} value={note} />);
+    const wrapper = shallow(<Note onDelete={noop} value={note} />);
     expect(wrapper.find(NoteContent)).toHaveProp('value', note);
   });
 });

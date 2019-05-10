@@ -5,7 +5,7 @@ import cx from 'classnames';
 import styles from './TextArea.module.scss';
 import { noop } from './utils';
 
-const TextArea = ({ value, onChange, onBlur, onClick, className }) => {
+const TextArea = ({ value, onChange, onBlur, onClick, className, ...rest }) => {
   const textAreaRef = useRef(null);
 
   useEffect(() => {
@@ -20,6 +20,11 @@ const TextArea = ({ value, onChange, onBlur, onClick, className }) => {
       onBlur={onBlur}
       onClick={onClick}
       inputRef={textAreaRef}
+      draggable
+      onDragStart={e => {
+        e.preventDefault();
+        e.stopPropagation();
+      }}
     />
   );
 };

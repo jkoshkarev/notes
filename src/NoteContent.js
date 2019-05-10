@@ -5,7 +5,7 @@ import TextArea from './TextArea';
 import styles from './NoteContent.module.scss';
 import { noop } from './utils';
 
-const NoteContent = ({ value, onChange, isEdit, onEditChange }) => {
+const NoteContent = ({ value, onChange, isEdit, onEditChange, ...rest }) => {
   const textAreaRef = useRef(null);
 
   function triggerEdit() {
@@ -25,6 +25,7 @@ const NoteContent = ({ value, onChange, isEdit, onEditChange }) => {
         value={value}
         innerRef={textAreaRef}
         className={styles.textArea}
+        // {...rest}
       />
     );
   }
@@ -41,9 +42,13 @@ const NoteContent = ({ value, onChange, isEdit, onEditChange }) => {
       onClick={triggerEdit}
       onKeyDown={handleKeyPress}
       tabIndex={0}
+      draggable
+      onDragStart={e => {
+        e.preventDefault();
+        e.stopPropagation();
+      }}
     >
       <ReactMarkdown
-        onClick={triggerEdit}
         source={value}
         escapeHtml={false}
         className={styles.markdown}

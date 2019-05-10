@@ -15,6 +15,8 @@ module.exports = {
   rules: {
     'react/jsx-filename-extension': 0,
     'object-curly-newline': 0,
+    'operator-linebreak': 0,
+    'no-use-before-define': 0,
   },
   overrides: [
     {
