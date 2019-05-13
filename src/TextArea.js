@@ -25,6 +25,7 @@ const TextArea = ({ value, onChange, onBlur, onClick, className, ...rest }) => {
         e.preventDefault();
         e.stopPropagation();
       }}
+      {...rest}
     />
   );
 };

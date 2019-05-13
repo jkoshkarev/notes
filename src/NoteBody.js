@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import TextArea from './TextArea';
@@ -8,13 +8,28 @@ import { noop } from './utils';
 const NoteBody = ({ value, onChange, isEdit, onEditChange }) => {
   const textAreaRef = useRef(null);
 
-  function triggerEdit() {
-    onEditChange(true);
-  }
+  const triggerEdit = useCallback(() => onEditChange(true), [onEditChange]);
 
-  function stopEdit() {
-    onEditChange(false);
-  }
+  const stopEdit = useCallback(() => onEditChange(false), [onEditChange]);
+
+  const handleTextAreaKeyDown = useCallback(
+    evt => {
+      if (evt.key === 'Escape') {
+        evt.preventDefault();
+        onEditChange(false);
+      }
+    },
+    [onEditChange],
+  );
+
+  const handleMarkdownKeyDown = useCallback(
+    evt => {
+      if (evt.key === 'Enter' || evt.key === ' ') {
+        triggerEdit();
+      }
+    },
+    [triggerEdit],
+  );
 
   if (isEdit) {
     return (
@@ -25,21 +40,16 @@ const NoteBody = ({ value, onChange, isEdit, onEditChange }) => {
         value={value}
         innerRef={textAreaRef}
         className={styles.textArea}
+        onKeyDown={handleTextAreaKeyDown}
       />
     );
-  }
-
-  function handleKeyPress(evt) {
-    if (evt.key === 'Enter' || evt.key === ' ') {
-      triggerEdit();
-    }
   }
 
   return (
     <div
       role="button"
       onClick={triggerEdit}
-      onKeyDown={handleKeyPress}
+      onKeyDown={handleMarkdownKeyDown}
       tabIndex={0}
       draggable
       onDragStart={e => {

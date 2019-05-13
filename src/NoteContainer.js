@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { List } from 'immutable';
 import Note from './dnd/SortableNote';
 import styles from './NoteContainer.module.scss';
@@ -55,11 +55,11 @@ const NoteContainer = () => {
     />
   ));
 
-  function handleNoteAdd() {
+  const handleNoteAdd = useCallback(() => {
     const noteId = generateId();
     const updatedNotes = notes.push({ noteId, value: '', created: new Date() });
     setNotes(updatedNotes);
-  }
+  }, [notes]);
 
   return (
     <div className={styles.container}>

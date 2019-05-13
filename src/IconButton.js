@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 const IconButton = ({ icon, onClick, className }) => {
-  function handleKeyPress(evt) {
-    if (onClick && (evt.key === 'Enter' || evt.key === ' ')) {
-      onClick();
-    }
-  }
+  const handleKeyPress = useCallback(
+    evt => {
+      if (onClick && (evt.key === 'Enter' || evt.key === ' ')) {
+        onClick();
+      }
+    },
+    [onClick],
+  );
 
   return (
     <i
