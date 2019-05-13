@@ -22,6 +22,7 @@ const IconButton = ({ icon, onClick, className }) => {
     />
   );
 };
+
 IconButton.propTypes = {
   /**
    * Font awesome icon (e.g. `times`).

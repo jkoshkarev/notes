@@ -17,6 +17,8 @@ module.exports = {
     'object-curly-newline': 0,
     'operator-linebreak': 0,
     'no-use-before-define': 0,
+    'arrow-parens': 0,
+    'react/forbid-prop-types': 0,
   },
   overrides: [
     {

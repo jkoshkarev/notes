@@ -5,7 +5,7 @@ import TextArea from './TextArea';
 import styles from './NoteBody.module.scss';
 import { noop } from './utils';
 
-const NoteBody = ({ value, onChange, isEdit, onEditChange }) => {
+const NoteBody = ({ value, onChange, isEdit, onEditChange, ...rest }) => {
   const textAreaRef = useRef(null);
 
   const triggerEdit = useCallback(() => onEditChange(true), [onEditChange]);
@@ -41,6 +41,7 @@ const NoteBody = ({ value, onChange, isEdit, onEditChange }) => {
         innerRef={textAreaRef}
         className={styles.textArea}
         onKeyDown={handleTextAreaKeyDown}
+        {...rest}
       />
     );
   }
@@ -51,11 +52,7 @@ const NoteBody = ({ value, onChange, isEdit, onEditChange }) => {
       onClick={triggerEdit}
       onKeyDown={handleMarkdownKeyDown}
       tabIndex={0}
-      draggable
-      onDragStart={e => {
-        e.preventDefault();
-        e.stopPropagation();
-      }}
+      {...rest}
     >
       <ReactMarkdown
         source={value}

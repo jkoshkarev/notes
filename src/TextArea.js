@@ -20,11 +20,6 @@ const TextArea = ({ value, onChange, onBlur, onClick, className, ...rest }) => {
       onBlur={onBlur}
       onClick={onClick}
       inputRef={textAreaRef}
-      draggable
-      onDragStart={e => {
-        e.preventDefault();
-        e.stopPropagation();
-      }}
       {...rest}
     />
   );

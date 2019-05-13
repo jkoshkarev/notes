@@ -39,6 +39,14 @@ const dropSourceHOC = DragSource(
   }),
 );
 
+const dragProps = {
+  draggable: true,
+  onDragStart: e => {
+    e.preventDefault();
+    e.stopPropagation();
+  },
+};
+
 export default flowRight(
   dropTargetHOC,
   dropSourceHOC,
@@ -46,5 +54,6 @@ export default flowRight(
     ...rest,
     className: cx(className, { [styles.dragging]: isDragging }),
     headerClassName: cx(headerClassName, styles.draggableHeader),
+    bodyRestProps: dragProps,
   })),
 )(Note);

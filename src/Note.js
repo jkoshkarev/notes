@@ -9,7 +9,18 @@ import { noop } from './utils';
 const getInfoFromCreated = created => created && created.toLocaleString();
 
 const Note = forwardRef(
-  ({ value, onDelete, onChange, created, className, headerClassName }, ref) => {
+  (
+    {
+      value,
+      onDelete,
+      onChange,
+      created,
+      className,
+      headerClassName,
+      bodyRestProps,
+    },
+    ref,
+  ) => {
     const [isEdit, setIsEdit] = useState(true);
 
     function handleNoteChange(evt) {
@@ -29,6 +40,7 @@ const Note = forwardRef(
           value={value}
           onEditChange={setIsEdit}
           isEdit={isEdit}
+          {...bodyRestProps}
         />
       </div>
     );
@@ -42,6 +54,7 @@ Note.propTypes = {
   value: PropTypes.string,
   className: PropTypes.string,
   headerClassName: PropTypes.string,
+  bodyRestProps: PropTypes.object,
 };
 
 Note.defaultProps = {
@@ -50,6 +63,7 @@ Note.defaultProps = {
   className: undefined,
   headerClassName: undefined,
   onChange: noop,
+  bodyRestProps: {},
 };
 
 export default Note;
