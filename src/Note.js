@@ -2,7 +2,7 @@ import React, { useState, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Header from './Header';
-import NoteContent from './NoteContent';
+import NoteBody from './NoteBody';
 import styles from './Note.module.scss';
 import { noop } from './utils';
 
@@ -24,7 +24,7 @@ const Note = forwardRef(
           isEdit={isEdit}
           className={headerClassName}
         />
-        <NoteContent
+        <NoteBody
           onChange={handleNoteChange}
           value={value}
           onEditChange={setIsEdit}

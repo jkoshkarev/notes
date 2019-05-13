@@ -2,10 +2,10 @@ import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import TextArea from './TextArea';
-import styles from './NoteContent.module.scss';
+import styles from './NoteBody.module.scss';
 import { noop } from './utils';
 
-const NoteContent = ({ value, onChange, isEdit, onEditChange, ...rest }) => {
+const NoteBody = ({ value, onChange, isEdit, onEditChange }) => {
   const textAreaRef = useRef(null);
 
   function triggerEdit() {
@@ -25,7 +25,6 @@ const NoteContent = ({ value, onChange, isEdit, onEditChange, ...rest }) => {
         value={value}
         innerRef={textAreaRef}
         className={styles.textArea}
-        // {...rest}
       />
     );
   }
@@ -57,7 +56,7 @@ const NoteContent = ({ value, onChange, isEdit, onEditChange, ...rest }) => {
   );
 };
 
-NoteContent.propTypes = {
+NoteBody.propTypes = {
   /**
    * Text to display.
    */
@@ -67,11 +66,11 @@ NoteContent.propTypes = {
   onEditChange: PropTypes.func,
 };
 
-NoteContent.defaultProps = {
+NoteBody.defaultProps = {
   value: '',
   isEdit: true,
   onEditChange: noop,
   onChange: noop,
 };
 
-export default NoteContent;
+export default NoteBody;
